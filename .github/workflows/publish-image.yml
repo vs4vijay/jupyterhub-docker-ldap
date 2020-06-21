@@ -3,21 +3,26 @@ name: Publish Docker Image
 on:
   push:
     branches:
-      - "develop"
+      - master
+      - develop
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Publish To Registry
+
+      - name: Publish To GitHub Registry
         uses: elgohr/Publish-Docker-Github-Action@2.17
-        # with:
-        #   name: vs4vijay/jupyterhub-docker-ldap
-        #   username: ${{ secrets.DOCKER_USERNAME }}
-        #   password: ${{ secrets.DOCKER_PASSWORD }}
         with:
           name: vs4vijay/jupyterhub-docker-ldap/jupyterhub-docker-ldap
           username: ${{ github.actor }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: docker.pkg.github.com
+
+      # - name: Publish To DockerHub Registry
+      #   uses: elgohr/Publish-Docker-Github-Action@2.17
+      #   with:
+      #     name: vs4vijay/jupyterhub-docker-ldap
+      #     username: ${{ secrets.DOCKER_USERNAME }}
+      #     password: ${{ secrets.DOCKER_PASSWORD }}
