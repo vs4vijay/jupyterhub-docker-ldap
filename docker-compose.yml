@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  jupyterhub:
+    user: "0:0"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    image: jupyterhub:latest
+    container_name: jupyterhub
+    env_file: .env
+    networks:
+      default:
+        aliases:
+          - jupyterhub
+    volumes:
+      # Bind Host's Docker socket so that DockerSpawner can use
+      - "/var/run/docker.sock:/var/run/docker.sock:rw"
+      # - "data:${DATA_VOLUME_CONTAINER}:rw"
+    environment:
+      DOCKER_SPAWNER_IMAGE: ${DOCKER_SPAWNER_IMAGE}
+    command: >
+      jupyterhub -f /etc/jupyterhub/jupyterhub_config.py
+
+# volumes:
+#   data:
+#     external:
+#       name: ${DATA_VOLUME_HOST}
+
+networks:
+  default:
+    external:
+      name: jupyterhub
