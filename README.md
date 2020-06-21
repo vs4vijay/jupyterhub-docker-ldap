@@ -8,8 +8,8 @@ Docker image for JupyterHub with DockerSpawner and LDAPAuthenticator Configurati
 
 - Create a `.env` file from `.env.example`
 - Fill the environment variables:
-  - DOCKER_SPAWNER_IMAGE="<>"
-  - LDAP_SERVER_ADDRESS="<LDAP Server Address>"
+  - `LDAP_SERVER_ADDRESS="<LDAP Server Address>"`
+  - `DOCKER_SPAWNER_IMAGE="jupyterhub/singleuser"` # No Need to change this
 
 ---
 
