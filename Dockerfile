@@ -1,4 +1,4 @@
-FROM jupyter/jupyterhub:latest
+FROM jupyter/base-notebook:latest
 MAINTAINER Vijay Soni <vs4vijay@gmail.com>
 
 
