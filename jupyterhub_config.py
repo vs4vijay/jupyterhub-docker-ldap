@@ -37,9 +37,7 @@ c.DockerSpawner.use_internal_ip = True
 c.DockerSpawner.network_name = network_name                                     
 c.DockerSpawner.extra_host_config = { 'network_mode': network_name } 
 
-# c.DockerSpawner.extra_host_config = {'network_mode': 'host'}
-# c.DockerSpawner.use_internal_ip = True
-# c.DockerSpawner.network_name = 'host'
+
 
 # Hostname/ip that should be used to connect to the hub
 # Typically container name
