@@ -7,19 +7,15 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
-    image: jupyterhub:latest
+    # image: jupyterhub:latest
     container_name: jupyterhub
     env_file: .env
-    networks:
-      default:
-        aliases:
-          - jupyterhub
+    ports:
+      - 8000:8000
     volumes:
       # Bind Host's Docker socket so that DockerSpawner can use
       - "/var/run/docker.sock:/var/run/docker.sock:rw"
       # - "data:${DATA_VOLUME_CONTAINER}:rw"
-    environment:
-      DOCKER_SPAWNER_IMAGE: ${DOCKER_SPAWNER_IMAGE}
     command: >
       jupyterhub -f /etc/jupyterhub/jupyterhub_config.py
 
@@ -31,4 +27,4 @@ services:
 networks:
   default:
     external:
-      name: jupyterhub
+      name: jupyterhub_network
