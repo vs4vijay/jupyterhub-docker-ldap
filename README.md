@@ -1,6 +1,6 @@
 # jupyterhub-docker-ldap
 
-Docker image for JupyterHub with DockerSpawner and LDAPAuthenticator Configuration
+Docker Image for JupyterHub with DockerSpawner and LDAPAuthenticator configuration
 
 ---
 
@@ -8,8 +8,8 @@ Docker image for JupyterHub with DockerSpawner and LDAPAuthenticator Configurati
 
 - Create a `.env` file from `.env.example`, and fill the values appropriately
 - Fill the environment variables:
-  - `LDAP_SERVER_ADDRESS=<LDAP Server Address>`
   - `AUTH=LDAP` # Change to `DUMMY` if you want to use dummy authentication
+  - `LDAP_SERVER_ADDRESS=<LDAP Server Address>`
   - `DOCKER_SPAWNER_IMAGE=jupyterhub/singleuser` # No Need to change this
   - `DOCKER_NETWORK_NAME=jupyterhub_network` # No Need to change this
   - `HUB_CONNECT_IP=jupyterhub` # No Need to change this
@@ -42,3 +42,18 @@ sudo docker run --restart=always --name=jupyterhub --network=jupyterhub_network 
 - To Start: `docker-compose up`
 - To Build and Start: `docker-compose up --build`
 - To Stop: `docker-compose down`
+
+---
+
+### Development Notes
+
+```python3
+
+from dockerspawner import DockerSpawner
+c.JupyterHub.spawner_class = DockerSpawner
+
+
+python3 -m pip install --no-cache --user dockerspawner jupyterhub-ldapauthenticator
+
+
+```

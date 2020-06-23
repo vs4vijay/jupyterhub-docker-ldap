@@ -6,7 +6,7 @@ build:
 
 .PHONY: run
 push:
-	sudo docker run --restart=always --name=jupyterhub -p 8000:8000 --env-file .env $(PROJECT)
+	sudo docker run --name=jupyterhub --restart=always --network=jupyterhub_network -p 8000:8000 --env-file .env $(PROJECT)
 
 .PHONY: push
 push:

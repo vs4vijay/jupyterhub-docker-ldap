@@ -22,15 +22,10 @@ elif auth == 'LDAP':
 # Launch with docker
 c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
 
-# OR
-# from dockerspawner import DockerSpawner
-# c.JupyterHub.spawner_class = DockerSpawner
-
-c.DockerSpawner.image = os.environ['DOCKER_SPAWNER_IMAGE']
+c.DockerSpawner.image = os.environ.get('DOCKER_SPAWNER_IMAGE') or 'jupyterhub/singleuser'
 
 # Delete containers when the stop
 c.DockerSpawner.remove = True
-
 
 network_name = os.environ.get('DOCKER_NETWORK_NAME') or 'jupyterhub_network'                                             
 c.DockerSpawner.use_internal_ip = True                                          
@@ -38,10 +33,6 @@ c.DockerSpawner.network_name = network_name
 c.DockerSpawner.extra_host_config = { 'network_mode': network_name } 
 
 
-
 # Hostname/ip that should be used to connect to the hub
 # Typically container name
 c.JupyterHub.hub_connect_ip = os.environ.get('HUB_CONNECT_IP') or 'jupyterhub'
-
-# Docker network to connect to
-# c.DockerSpawner.network_name = 'jupyterhub'
