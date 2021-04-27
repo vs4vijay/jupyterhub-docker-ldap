@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Publish To GitHub Registry
-        uses: elgohr/Publish-Docker-Github-Action@3.03
+        uses: elgohr/Publish-Docker-Github-Action@3.04
         with:
           name: vs4vijay/jupyterhub-docker-ldap/jupyterhub-docker-ldap
           username: ${{ github.actor }}
